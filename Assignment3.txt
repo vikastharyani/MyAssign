@@ -1,0 +1,21 @@
+Consider a monolithic java application stack. 
+Apache Web Server, Apache Tomcat application server with Active MQ and Oracle and MongoDB backend. 
+Propose a solution to migrate this application stack to cloud of your choice (AWS/OpenStack/Azure). 
+Mention all the provider services you would use and how you would maintain HA and Load Balancing (consider app to be stateless). Mention rationale for each decision. 
+
+Services
+Apache Web Sever – Amazon EC2 Instances with Auto Scaling
+Apcahe Tomcat - Amazon EC2 Instances with Auto Scaling
+Active MQ – AWS SQS or Active MQ
+Load balancing – Amazon ELB
+Oracle – Amazon RDS (Oracle) 
+MongoDB – Amazon Dynamo DB
+										Amazon Dynamo DB
+											 |
+                                                                                                                                   |
+DNS ------ ELB------EC2(Apache WebServer) -------AWS SQS-----------EC2 (Apache Tomcat)
+		          (AutoScaling Grp)                                                     (AutoScaling Grp)
+			Multiple Az's							|
+											|													|													|
+										Amazon RDS
+
